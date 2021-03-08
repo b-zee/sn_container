@@ -1,0 +1,28 @@
+#!/bin/sh
+
+node_dir="${HOME}/.safe/node/"
+mkdir --parents "${node_dir}"
+
+# Genesis node.
+sn_node --local --local-port=12000 --root-dir "${node_dir}/12000" --first &
+
+# Regular nodes connecting to genesis.
+for port in $(seq 12001 12011); do
+    sleep 1
+    sn_node --local --local-port=$port --root-dir "${node_dir}/$port" --hard-coded-contacts='["127.0.0.1:12000"]' &
+done
+
+# Wait for initialisation.
+sleep 12
+
+# Easy default password used to create Safe.
+export SAFE_AUTH_PASSPHRASE=a
+export SAFE_AUTH_PASSWORD=a
+
+# Start the authenticator, create a Safe and automagically authorise CLI.
+safe auth start --authd-path=/usr/local/bin
+safe auth create --test-coins
+safe auth unlock --self-auth
+
+# Wait for spawned nodes to exit (perhaps never).
+wait
