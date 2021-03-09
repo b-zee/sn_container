@@ -24,6 +24,9 @@ RUN cargo install --root /usr/local --path sn_api/sn_authd
 RUN cargo install --root /usr/local --path sn_node/
 RUN cargo install --root /usr/local --path sn_launch_tool/
 
+COPY sn/ sn/
+RUN cargo install --root /usr/local --path sn/
+
 # Create small-sized image including only the final binaries.
 FROM docker.io/library/alpine:3.13
 
