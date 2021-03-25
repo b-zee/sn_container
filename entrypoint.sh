@@ -1,6 +1,6 @@
 #!/bin/sh
 
-node_dir="${HOME}/.safe/node/"
+node_dir="${HOME}/.safe/node"
 mkdir --parents "${node_dir}"
 
 # Genesis node.
@@ -15,14 +15,8 @@ done
 # Wait for initialisation.
 sleep 12
 
-# Easy default password used to create Safe.
-export SAFE_AUTH_PASSPHRASE=a
-export SAFE_AUTH_PASSWORD=a
+# Launch authenticator.
+sn_authd start --fg > /dev/null &
 
-# Start the authenticator, create a Safe and automagically authorise CLI.
-safe auth start --authd-path=/usr/local/bin
-safe auth create --test-coins
-safe auth unlock --self-auth
-
-# Wait for spawned nodes to exit (perhaps never).
+# Wait for background processes.
 wait
