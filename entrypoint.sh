@@ -16,7 +16,7 @@ done
 sleep 12
 
 # Launch authenticator.
-sn_authd start --fg > /dev/null &
+sn_authd start --fg &
 
 # Wait for background processes.
 wait
