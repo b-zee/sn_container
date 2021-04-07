@@ -2,6 +2,7 @@
 
 set -eax
 
+# Use a specified IP (e.g. 127.0.0.1), or fall back to first address we find (e.g. 172.17.0.2).
 ip="${SN_PUBLIC_IP:-$(hostname -i | awk '{print $1}')}"
 
 node_dir="${HOME}/.safe/node"
