@@ -24,8 +24,5 @@ done
 # Wait for initialisation.
 sleep 12
 
-# Launch authenticator.
-sn_authd start --fg &
-
 # Wait for background processes.
 wait
