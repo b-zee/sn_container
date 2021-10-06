@@ -17,15 +17,17 @@ To fully stop and kill the container:
 $ docker rm --force sn
 ```
 
-### Logging and the genesis key
+### Genesis key
 
-The genesis node emits a genesis key in the log. The first part of this log is reachable for convenience by `docker log` as follows:
+The genesis node emits a genesis key that is needed to connect to the network. This information is embedded in a file and can be accessed like this:
 
 ```txt
-$ docker logs sn
+$ docker exec -it sn cat /root/.safe/node/node_connection_info.config
 ```
 
-The full log can be accessed by e.g.:
+### Logging
+
+The full logs can be accessed by e.g.:
 
 ```
 $ docker exec -it sn sh -c 'less /root/.safe/node/12000/*.log.*'

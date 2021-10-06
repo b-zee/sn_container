@@ -23,9 +23,7 @@ for port in $(seq 12001 12011); do
 done
 
 # Wait for initialisation.
-sleep 12
-
-head "${node_dir}/12000/sn_node.log."*
+sleep 10
 
 # Wait for background processes.
 wait
