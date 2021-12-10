@@ -46,6 +46,8 @@ The container can also be run on the host network by adding `--network=host` to 
 
 ### Command Line Interface
 
+> :warning: The CLI is not always available if there is no up-to-date CLI that matches the node version.
+
 If the network is up and running, one can use the built-in Safe CLI to operate on the network.
 
 ```txt
